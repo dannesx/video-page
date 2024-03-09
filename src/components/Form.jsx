@@ -1,8 +1,24 @@
+/* eslint-disable react/prop-types */
 import { RiSendPlaneFill } from '@remixicon/react'
 
-function Form() {
+function Form({ addComment }) {
+	function handleForm(e) {
+		e.preventDefault()
+
+		const author = e.target['author'].value
+		const text = e.target['text'].value
+		const comment = { author, text }
+
+		addComment(comment)
+
+		e.target.reset()
+	}
+
 	return (
-		<form className="bg-teal-100 rounded-lg p-6 flex flex-col min-w-[300px] gap-6">
+		<form
+			className="bg-teal-100 rounded-lg p-6 flex flex-col min-w-[300px] gap-6"
+			onSubmit={e => handleForm(e)}
+		>
 			<div>
 				<label htmlFor="name" className="text-teal-500 font-medium">
 					Nome
@@ -10,6 +26,7 @@ function Form() {
 				<input
 					type="text"
 					id="name"
+					name="author"
 					className="bg-transparent border-b-2 border-teal-500 w-full outline-none transition-colors hover:bg-teal-200 focus:bg-teal-200 p-2 rounded-t"
 					required
 				/>
@@ -21,6 +38,7 @@ function Form() {
 				</label>
 				<textarea
 					id="comment"
+					name="text"
 					className="bg-transparent border-b-2 border-teal-500 resize-none flex-1 w-full outline-none transition-colors hover:bg-teal-200 focus:bg-teal-200 p-2 rounded-t"
 					required
 				/>

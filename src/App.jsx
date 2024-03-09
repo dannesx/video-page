@@ -7,9 +7,7 @@ import Video from './components/Video'
 function App() {
 	const [comments, setComments] = useState([])
 
-	function addComment(author, text) {
-		const comment = { author, text }
-
+	function addComment(comment) {
 		setComments([...comments, comment])
 	}
 
@@ -17,7 +15,7 @@ function App() {
 		<main className="flex pt-10 justify-center">
 			<div className="grid grid-cols-[1fr_300px] justify-center gap-10">
 				<Video title="We Are! - One Piece 1000 Special Opening" />
-				<Form add={addComment}/>
+				<Form addComment={addComment} />
 				<CommentWrapper comments={comments} />
 			</div>
 
